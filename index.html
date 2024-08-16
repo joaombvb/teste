@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Funcionários e Chamados</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestão de Capacidade e Custos</h1>
+        <h2>Análise de dados</h2>
+
+        <div class="table-container">
+            <div class="table-title">Funcionários</div>
+            <table id="employees">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Senioridade</th>
+                        <th>Disponibilidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados dos funcionários serão inseridos aqui pelo JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <div class="table-title">Chamados</div>
+            <table id="tickets">
+                <thead>
+                    <tr>
+                        <th>Protocolo</th>
+                        <th>Ordem de Abertura</th>
+                        <th>Senioridade</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados dos chamados serão inseridos aqui pelo JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+       <!-- Segunda Seção -->
+       <div class="section">
+        <h2>Gráficos comparativos</h2>
+        <h3>Funcionários</h3>
+        <div class="charts-container">
+            <div class="chart-container">
+                <canvas id="employeeUsageChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="employeeAvailabilityChart"></canvas>
+            </div>
+        </div>
+        <h3>Chamados</h3>
+        <div class="charts-container">
+            <div class="chart-container">
+                <canvas id="ticketStatusChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="ticketStatusBreakdownChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
