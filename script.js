@@ -1,8 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const employeeData = [];
-    const ticketData = [];
+    // Gerar Dados Fictícios
+    const employeeData = generateEmployeeData();
+    const ticketData = generateTicketData();
 
-    // Lista de nomes fictícios para funcionários
+    // Inserir Dados nas Tabelas
+    populateTable('#employees tbody', employeeData, createEmployeeRow);
+    populateTable('#tickets tbody', ticketData, createTicketRow);
+
+    // Configurar e Criar Gráficos
+    createChart('employeeUsageChart', generateChartData(['Junior', 'Pleno', 'Senior'], [20, 15, 15], 'Funcionários por Senioridade'));
+    createChart('employeeAvailabilityChart', generateChartData(['Disponível', 'Em Atendimento', 'Ausente'], [30, 10, 10], 'Disponibilidade dos Funcionários'));
+    createChart('ticketStatusChart', generateChartData(['Junior', 'Pleno', 'Senior'], [10, 15, 25], 'Chamados Abertos por Senioridade'));
+    createChart('ticketStatusBreakdownChart', generateChartData(['Aberto', 'Em Andamento', 'Concluído'], [15, 20, 15], 'Status dos Chamados'));
+});
+
+// Função para gerar dados de funcionários
+function generateEmployeeData() {
     const names = [
         'Maria Meireles', 'Bruno Oliveira', 'Clara Souza', 'Daniel Santos', 'Elisa Silva',
         'Felipe Lima', 'Gabriela Martins', 'Henrique Almeida', 'Isabella Pereira', 'João Fernandes',
@@ -16,155 +29,102 @@ document.addEventListener('DOMContentLoaded', () => {
         'Tânia Almeida', 'Ulisses Rocha', 'Vanessa Ferreira', 'Wagner Castro', 'Ximena Pinto'
     ];
 
-    // Função para gerar um protocolo aleatório
-    function generateProtocol() {
-        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const numbers = '0123456789';
-        let protocol = '';
-        
-        for (let i = 0; i < 3; i++) {
-            protocol += letters.charAt(Math.floor(Math.random() * letters.length));
-        }
-        for (let i = 0; i < 6; i++) {
-            protocol += numbers.charAt(Math.floor(Math.random() * numbers.length));
-        }
+    return names.map(name => ({
+        name: name,
+        seniority: getRandomElement(['Senior', 'Pleno', 'Junior']),
+        availability: getRandomElement(['Ausente', 'Em atendimento', 'Disponível']),
+    }));
+}
 
-        return protocol;
-    }
-
-    // Gerar dados fictícios para funcionários
-    names.forEach(name => {
-        employeeData.push({
-            name: name,
-            seniority: ['Senior', 'Pleno', 'Junior'][Math.floor(Math.random() * 3)],
-            availability: ['Ausente', 'Em atendimento', 'Disponível'][Math.floor(Math.random() * 3)]
-        });
-    });
-
-    // Gerar dados fictícios para chamados
+// Função para gerar dados de chamados
+function generateTicketData() {
+    const tickets = [];
     for (let i = 1; i <= 50; i++) {
-        ticketData.push({
+        tickets.push({
             protocol: generateProtocol(),
             orderOfOpening: `${i}º`,
-            seniority: ['Senior', 'Pleno', 'Junior'][Math.floor(Math.random() * 3)],
-            status: ['Aberto', 'Em Andamento', 'Concluído'][Math.floor(Math.random() * 3)]
+            seniority: getRandomElement(['Senior', 'Pleno', 'Junior']),
+            status: getRandomElement(['Aberto', 'Em Andamento', 'Concluído']),
         });
     }
+    return tickets;
+}
 
-    // Inserir dados na tabela de funcionários
-    const employeeTableBody = document.querySelector('#employees tbody');
-    employeeData.forEach(emp => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${emp.name}</td>
-            <td class="seniority-${emp.seniority.toLowerCase()}">${emp.seniority}</td>
-            <td class="availability-${emp.availability.toLowerCase().replace(' ', '-')}" >${emp.availability}</td>
-        `;
-        employeeTableBody.appendChild(row);
+// Função para inserir dados na tabela
+function populateTable(selector, data, rowFunction) {
+    const tableBody = document.querySelector(selector);
+    data.forEach(item => {
+        const row = rowFunction(item);
+        tableBody.appendChild(row);
     });
+}
 
-    // Inserir dados na tabela de chamados
-    const ticketTableBody = document.querySelector('#tickets tbody');
-    ticketData.forEach(ticket => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${ticket.protocol}</td>
-            <td>${ticket.orderOfOpening}</td>
-            <td class="seniority-${ticket.seniority.toLowerCase()}">${ticket.seniority}</td>
-            <td class="status-${ticket.status.toLowerCase().replace(' ', '-')}" >${ticket.status}</td>
-        `;
-        ticketTableBody.appendChild(row);
-    });
-});
+// Funções para criar linhas de tabela
+function createEmployeeRow(employee) {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${employee.name}</td>
+        <td class="seniority-${employee.seniority.toLowerCase()}">${employee.seniority}</td>
+        <td class="availability-${employee.availability.toLowerCase().replace(' ', '-')}" >${employee.availability}</td>
+    `;
+    return row;
+}
 
-//Segunda seção 
+function createTicketRow(ticket) {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${ticket.protocol}</td>
+        <td>${ticket.orderOfOpening}</td>
+        <td class="seniority-${ticket.seniority.toLowerCase()}">${ticket.seniority}</td>
+        <td class="status-${ticket.status.toLowerCase().replace(' ', '-')}" >${ticket.status}</td>
+    `;
+    return row;
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Dados fictícios para o gráfico de utilização de funcionários
-    const employeeData = {
-        labels: ['Junior', 'Pleno', 'Senior'],
+// Funções auxiliares
+function getRandomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+function generateProtocol() {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const numbers = '0123456789';
+    let protocol = '';
+    for (let i = 0; i < 3; i++) protocol += letters.charAt(Math.floor(Math.random() * letters.length));
+    for (let i = 0; i < 6; i++) protocol += numbers.charAt(Math.floor(Math.random() * numbers.length));
+    return protocol;
+}
+
+// Função para gerar dados de gráfico
+function generateChartData(labels, data, label) {
+    return {
+        labels: labels,
         datasets: [{
-            label: 'Funcionários por Senioridade',
-            data: [20, 15, 15], // Total de 50 funcionários
-            backgroundColor: [
-                'rgba(25, 142, 123, 0.2)', // Junior
-                'rgba(15, 98, 255, 0.2)',   // Pleno
-                'rgba(117, 66, 254, 0.2)'    // Senior
-            ],
-            borderColor: [
-                'rgba(25, 142, 123, 1)',    // Junior
-                'rgba(15, 98, 255, 1)',     // Pleno
-                'rgba(117, 66, 254, 1)'     // Senior
-            ],
+            label: label,
+            data: data,
+            backgroundColor: generateColors(data.length, 0.2),
+            borderColor: generateColors(data.length, 1),
             borderWidth: 1
         }]
     };
+}
 
-    // Dados fictícios para o gráfico de disponibilidade de funcionários
-    const availabilityData = {
-        labels: ['Disponível', 'Em Atendimento', 'Ausente'],
-        datasets: [{
-            label: 'Disponibilidade dos Funcionários',
-            data: [30, 10, 10], // Total de 50 funcionários
-            backgroundColor: [
-                'rgba(137, 226, 59, 0.2)', // Disponível
-                'rgba(253, 204, 0, 0.2)',   // Em Atendimento
-                'rgba(247, 82, 1, 0.2)'      // Ausente
-            ],
-            borderColor: [
-                'rgba(137, 226, 59, 1)',    // Disponível
-                'rgba(253, 204, 0, 1)',     // Em Atendimento
-                'rgba(247, 82, 1, 1)'       // Ausente
-            ],
-            borderWidth: 1
-        }]
-    };
+// Função para gerar cores de gráficos
+function generateColors(count, opacity) {
+    const baseColors = [
+        'rgba(25, 142, 123, OPACITY)', // Cor 1
+        'rgba(15, 98, 255, OPACITY)',   // Cor 2
+        'rgba(117, 66, 254, OPACITY)'   // Cor 3
+    ];
+    return baseColors.slice(0, count).map(color => color.replace('OPACITY', opacity));
+}
 
-    // Dados fictícios para o gráfico de chamados
-    const ticketData = {
-        labels: ['Junior', 'Pleno', 'Senior'],
-        datasets: [{
-            label: 'Chamados Abertos por Senioridade',
-            data: [10, 15, 25], // Total de 50 chamados
-            backgroundColor: [
-                'rgba(25, 142, 123, 0.2)', // Junior
-                'rgba(15, 98, 255, 0.2)',   // Pleno
-                'rgba(117, 66, 254, 0.2)'    // Senior
-            ],
-            borderColor: [
-                'rgba(25, 142, 123, 1)',    // Junior
-                'rgba(15, 98, 255, 1)',     // Pleno
-                'rgba(117, 66, 254, 1)'     // Senior
-            ],
-            borderWidth: 1
-        }]
-    };
-
-    // Dados fictícios para o gráfico de status dos chamados
-    const statusData = {
-        labels: ['Aberto', 'Em Andamento', 'Concluído'],
-        datasets: [{
-            label: 'Status dos Chamados',
-            data: [15, 20, 15], // Total de 50 chamados
-            backgroundColor: [
-                'rgba(247, 82, 1, 0.2)', // Aberto
-                'rgba(253, 204, 0, 0.2)', // Em Andamento
-                'rgba(137, 226, 59, 0.2)'  // Concluído
-            ],
-            borderColor: [
-                'rgba(247, 82, 1, 1)',    // Aberto
-                'rgba(253, 204, 0, 1)',   // Em Andamento
-                'rgba(137, 226, 59, 1)'   // Concluído
-            ],
-            borderWidth: 1
-        }]
-    };
-
-    // Configuração e criação do gráfico de utilização de funcionários
-    const ctx1 = document.getElementById('employeeUsageChart').getContext('2d');
-    new Chart(ctx1, {
+// Função para criar gráfico
+function createChart(chartId, data) {
+    const ctx = document.getElementById(chartId).getContext('2d');
+    new Chart(ctx, {
         type: 'bar',
-        data: employeeData,
+        data: data,
         options: {
             responsive: true,
             scales: {
@@ -174,49 +134,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
-    // Configuração e criação do gráfico de disponibilidade de funcionários
-    const ctx2 = document.getElementById('employeeAvailabilityChart').getContext('2d');
-    new Chart(ctx2, {
-        type: 'bar',
-        data: availabilityData,
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    // Configuração e criação do gráfico de chamados
-    const ctx3 = document.getElementById('ticketStatusChart').getContext('2d');
-    new Chart(ctx3, {
-        type: 'bar',
-        data: ticketData,
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    // Configuração e criação do gráfico de status dos chamados
-    const ctx4 = document.getElementById('ticketStatusBreakdownChart').getContext('2d');
-    new Chart(ctx4, {
-        type: 'bar',
-        data: statusData,
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-});
+}
