@@ -8,12 +8,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <header>
+        <img src="./assets/logo-header.png" class="logo-header">
+    </header>
     <div class="container">
-        <h1>Gestão de Capacidade e Custos</h1>
-        <h2>Análise de dados</h2>
+        <h1>GESTÃO DE CAPACIDADE E CUSTOS</h1>
 
         <div class="table-container">
-            <div class="table-title">Funcionários</div>
+            <div class="table-title">FUNCIONÁRIOS</div>
             <table id="employees">
                 <thead>
                     <tr>
@@ -29,7 +31,7 @@
         </div>
 
         <div class="table-container">
-            <div class="table-title">Chamados</div>
+            <div class="table-title">CHAMADOS</div>
             <table id="tickets">
                 <thead>
                     <tr>
@@ -47,8 +49,9 @@
 
        <!-- Segunda Seção -->
        <div class="section">
-        <h2>Gráficos comparativos</h2>
-        <h3>Funcionários</h3>
+        <h2 class="section-txt">GRÁFICOS COMPARATIVOS</h2>
+        <hr>
+        <h3 class="section-txt">FUNCIONÁRIOS</h3>
         <div class="charts-container">
             <div class="chart-container">
                 <canvas id="employeeUsageChart"></canvas>
@@ -57,7 +60,8 @@
                 <canvas id="employeeAvailabilityChart"></canvas>
             </div>
         </div>
-        <h3>Chamados</h3>
+        <hr>
+        <h3 class="section-txt">CHAMADOS</h3>
         <div class="charts-container">
             <div class="chart-container">
                 <canvas id="ticketStatusChart"></canvas>

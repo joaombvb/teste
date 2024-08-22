@@ -5,8 +5,27 @@ body {
     box-sizing: border-box;
 }
 
+header {
+    background-color:#016db5;
+}
+
+.logo-header {
+    width: auto;
+    height: 70px;
+    margin: 1.5rem;
+}
+
 .container {
     padding: 20px;
+}
+
+h1 {
+    background-color: #016db5;
+    padding: 1.5rem;
+    border-radius: 10px;
+    color:#fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    margin: 0px 6%;
 }
 
 h1, h2 {
@@ -69,6 +88,9 @@ tbody tr:hover {
 
 .section {
     margin: 50px 10%; /* Margem da segunda seção */
+    background-color: #016db5;
+    border-radius: 20px;
+    padding: 20px;
 }
 
 h3 {
@@ -84,9 +106,20 @@ h3 {
 
 .chart-container {
     width: 48%; /* Ajusta a largura dos gráficos para caber lado a lado */
+    box-shadow: -1px 0px 16px 0px rgba(0,0,0,0.38); /* Sombra atualizada */
+    -webkit-box-shadow: -1px 0px 16px 0px rgba(0,0,0,0.38); /* Sombra atualizada */
+    -moz-box-shadow: -1px 0px 16px 0px rgba(0,0,0,0.38); /* Sombra atualizada */
+    background-color: #fff;
+    border-radius: 20px;
+    margin: 0px 20px 20px;
+
 }
 
 .chart-container canvas {
     width: 100% !important; /* Garante que o canvas ocupe toda a largura do contêiner */
     height: 400px !important; /* Ajusta a altura dos gráficos */
+}
+
+.section-txt {
+    color:#fff;
 }
