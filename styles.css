@@ -49,6 +49,7 @@ h1, h2 {
     margin: var(--section-margin);
     position: relative;
     box-shadow: var(--box-shadow);
+    border: 3px solid var(--primary-color);
     border-radius: 8px;
     overflow: hidden;
 }
