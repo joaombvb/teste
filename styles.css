@@ -1,3 +1,16 @@
+:root {
+    /* Variáveis de cores */
+    --primary-color: #016db5;
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --grey-color: #f4f4f4;
+    --light-grey-color: #f1f1f1;
+
+    /* Variáveis de tamanhos */
+    --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    --section-margin: 50px 10%;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,13 +19,13 @@ body {
 }
 
 header {
-    background-color:#016db5;
+    background-color: var(--primary-color);
 }
 
 .logo-header {
     width: auto;
     height: 70px;
-    margin: 1.5rem;
+    margin: 1.5rem;;
 }
 
 .container {
@@ -20,11 +33,11 @@ header {
 }
 
 h1 {
-    background-color: #016db5;
+    background-color: var(--primary-color);
     padding: 1.5rem;
-    border-radius: 10px;
-    color:#fff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    color: var(--white-color);
+    box-shadow: var(--box-shadow);
     margin: 0px 6%;
 }
 
@@ -33,24 +46,22 @@ h1, h2 {
 }
 
 .table-container {
-    margin: 50px 10%; /* Margem atualizada */
+    margin: var(--section-margin);
     position: relative;
-    box-shadow: -1px 0px 16px 0px rgba(0,0,0,0.38); /* Sombra atualizada */
-    -webkit-box-shadow: -1px 0px 16px 0px rgba(0,0,0,0.38); /* Sombra atualizada */
-    -moz-box-shadow: -1px 0px 16px 0px rgba(0,0,0,0.38); /* Sombra atualizada */
-    border-radius: 8px; /* Adiciona bordas arredondadas */
-    overflow: hidden; /* Garante que a borda arredondada se aplique ao conteúdo interno */
+    box-shadow: var(--box-shadow);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .table-title {
     text-align: center;
     margin-bottom: 10px;
-    background: #016db5; /* Cor azul atualizada */
-    color: #fff; /* Cor do texto branco */
-    padding: 15px; /* Maior padding para destacar mais */
-    font-size: 1.2em; /* Tamanho da fonte aumentado */
-    font-weight: bold; /* Fonte em negrito */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil para destaque */
+    background: var(--primary-color);
+    color: var(--white-color);
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: var(--box-shadow);
     position: sticky;
     top: 0;
     z-index: 1;
@@ -63,7 +74,7 @@ table {
 }
 
 table, th, td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--grey-color);
 }
 
 th, td {
@@ -72,11 +83,11 @@ th, td {
 }
 
 th {
-    background-color: #f4f4f4;
+    background-color: var(--grey-color);
 }
 
 tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: var(--light-grey-color);
 }
 
 .table-container {
@@ -87,8 +98,8 @@ tbody tr:hover {
 /* Segunda seção */
 
 .section {
-    margin: 50px 10%; /* Margem da segunda seção */
-    background-color: #016db5;
+    margin: var(--section-margin);
+    background-color: var(--primary-color);
     border-radius: 20px;
     padding: 20px;
 }
@@ -101,25 +112,22 @@ h3 {
 .charts-container {
     display: flex;
     justify-content: space-between;
-    gap: 20px; /* Espaço entre os gráficos */
+    gap: 20px;
 }
 
 .chart-container {
-    width: 48%; /* Ajusta a largura dos gráficos para caber lado a lado */
-    box-shadow: -1px 0px 16px 0px rgba(0,0,0,0.38); /* Sombra atualizada */
-    -webkit-box-shadow: -1px 0px 16px 0px rgba(0,0,0,0.38); /* Sombra atualizada */
-    -moz-box-shadow: -1px 0px 16px 0px rgba(0,0,0,0.38); /* Sombra atualizada */
-    background-color: #fff;
-    border-radius: 20px;
+    width: 48%;
+    box-shadow: var(--box-shadow);;
+    background-color: var(--white-color);
+    border-radius: 15px;
     margin: 0px 20px 20px;
-
 }
 
 .chart-container canvas {
-    width: 100% !important; /* Garante que o canvas ocupe toda a largura do contêiner */
-    height: 400px !important; /* Ajusta a altura dos gráficos */
+    width: 100% !important;
+    height: 400px !important;
 }
 
 .section-txt {
-    color:#fff;
+    color: var(--white-color);
 }
