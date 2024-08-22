@@ -8,10 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     populateTable('#tickets tbody', ticketData, createTicketRow);
 
     // Configurar e Criar Gráficos
-    createChart('employeeUsageChart', generateChartData(['Junior', 'Pleno', 'Senior'], [20, 15, 15], 'Funcionários por Senioridade'));
-    createChart('employeeAvailabilityChart', generateChartData(['Disponível', 'Em Atendimento', 'Ausente'], [30, 10, 10], 'Disponibilidade dos Funcionários'));
-    createChart('ticketStatusChart', generateChartData(['Junior', 'Pleno', 'Senior'], [10, 15, 25], 'Chamados Abertos por Senioridade'));
-    createChart('ticketStatusBreakdownChart', generateChartData(['Aberto', 'Em Andamento', 'Concluído'], [15, 20, 15], 'Status dos Chamados'));
+    createChart('employeeUsageChart', generateChartData(['Junior', 'Pleno', 'Sênior'], [20, 15, 15], 'Consultores disponíveis'));
+    createChart('employeeAvailabilityChart', generateChartData(['Disponível', 'Em Atendimento', 'Ausente'], [30, 10, 10], 'Status dos consultores'));
+    createChart('ticketStatusChart', generateChartData(['Junior', 'Pleno', 'Sênior'], [10, 15, 25], 'Chamados abertos'));
+   createChart('ticketStatusBreakdownChart', generateChartData(['Aberto', 'Em Andamento',  'Concluído'], [15, 20, 15], 'Status dos Chamados'));
+   createChart('employeeUsageForecastChart', generateChartData(['Júnior', 'Pleno', 'Sênior'], [8, 19, 23], 'Previsão de alocação de consultores'));
 });
 
 // Função para gerar dados de funcionários

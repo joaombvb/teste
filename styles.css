@@ -133,3 +133,31 @@ h3 {
 .section-txt {
     color: var(--white-color);
 }
+
+/* TERCEIRA SEÇÃO */
+
+.previsao {
+    display: flex;
+}
+
+.charts-previsao {
+    width: 50%;
+}
+
+.chart-previsao {
+    width: 100%;
+}
+
+.taxa-acerto {
+    color: var(--white-color);
+    text-align: center;
+    width: 50%;
+}
+
+.taxa-acerto_txt {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding: 1em 0.2em 0.5em;
+    margin: 0 8em;
+}

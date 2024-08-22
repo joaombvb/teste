@@ -11,11 +11,13 @@
     <header>
         <img src="./assets/logo-header.png" class="logo-header">
     </header>
+
     <div class="container">
         <h1>GESTÃO DE CAPACIDADE E CUSTOS</h1>
 
+        <!-- Primeira seção -->
         <div class="table-container">
-            <div class="table-title">FUNCIONÁRIOS</div>
+            <div class="table-title">CONSULTORES</div>
             <table id="employees">
                 <thead>
                     <tr>
@@ -48,29 +50,52 @@
         </div>
 
        <!-- Segunda Seção -->
-       <div class="section">
-        <h2 class="section-txt">GRÁFICOS COMPARATIVOS</h2>
-        <hr>
-        <h3 class="section-txt">FUNCIONÁRIOS</h3>
-        <div class="charts-container">
-            <div class="chart-container">
-                <canvas id="employeeUsageChart"></canvas>
+        <div class="section">
+            <h2 class="section-txt">GRÁFICOS COMPARATIVOS</h2>
+            <hr>
+            <h3 class="section-txt">CONSULTORES</h3>
+            <div class="charts-container">
+                <div class="chart-container">
+                    <canvas id="employeeUsageChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="employeeAvailabilityChart"></canvas>
+                </div>
             </div>
-            <div class="chart-container">
-                <canvas id="employeeAvailabilityChart"></canvas>
+            <hr>
+            <h3 class="section-txt">CHAMADOS</h3>
+            <div class="charts-container">
+                <div class="chart-container">
+                    <canvas id="ticketStatusChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="ticketStatusBreakdownChart"></canvas>
+                </div>
             </div>
         </div>
-        <hr>
-        <h3 class="section-txt">CHAMADOS</h3>
-        <div class="charts-container">
-            <div class="chart-container">
-                <canvas id="ticketStatusChart"></canvas>
+        <!-- Terceira seção -->
+        <section class="section">
+            <h2 class="section-txt">PREVISÃO</h2>
+            <hr>
+            <div class="previsao">
+                <div class="charts-container charts-previsao">
+                    <div class="chart-container chart-previsao">
+                        <canvas id="employeeUsageForecastChart"></canvas>
+                    </div>
+                </div>
+                <div class="taxa-acerto">
+                    <h3>TAXAS DE ACERTO</h3>
+                    <p class="taxa-acerto_txt"><span>Junior:</span><span>.....80%</span></p>
+                    <p class="taxa-acerto_txt"><span>Pleno:</span><span>.....79%</span></p>
+                    <p class="taxa-acerto_txt"><span>Sênior:</span><span>.....92%</span></p>
+
+
+
+                </div>
+
             </div>
-            <div class="chart-container">
-                <canvas id="ticketStatusBreakdownChart"></canvas>
-            </div>
-        </div>
-    </div>
+
+        </section>
 </div>
 <script src="script.js"></script>
 </body>
